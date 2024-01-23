@@ -1,6 +1,6 @@
-package SheetLogic;
+package SheetHandling;
 
-import CellDataTypes.CellData;
+import SheetHandling.CellDataTypes.CellData;
 
 import java.io.*;
 
@@ -35,7 +35,8 @@ public class IO {
                     lastCol++;
                 }
                 //Write cell value if it exists
-                lineBuilder.append(cD.value.orElse(""));
+                //lineBuilder.append(cD.value.orElse(""));
+                lineBuilder.append(cD.mContent.getContent());
                 lastRow = cD.row;
                 lastCol = cD.column;
             }

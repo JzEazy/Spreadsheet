@@ -1,7 +1,7 @@
-package SheetHandling;
+package SheetHandling.Iterator;
 
-import CellDataTypes.Cell;
-import CellDataTypes.CellData;
+import SheetHandling.CellDataTypes.Cell;
+import SheetHandling.CellDataTypes.CellData;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -29,7 +29,8 @@ public class CellDataIterator implements Iterator<CellData> {
         }
         if (cellIterator != null && cellIterator.hasNext()) {
             Map.Entry<Integer, Cell> cellEntry = cellIterator.next();
-            nextCellData = new CellData(currentRow, cellEntry.getKey(), cellEntry.getValue());
+            //nextCellData = new CellData(currentRow, cellEntry.getKey(), cellEntry.getValue());
+            nextCellData = new CellData(currentRow, cellEntry.getKey(), cellEntry.getValue().getContent2());
         } else {
             nextCellData = null;
         }
