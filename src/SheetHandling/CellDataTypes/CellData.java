@@ -1,4 +1,4 @@
-package CellDataTypes;
+package SheetHandling.CellDataTypes;
 
 import java.util.Optional;
 
@@ -15,5 +15,11 @@ public class CellData {
         this.row = row;
         this.column = column;
         this.value = cell.getContent();
+    }
+
+    public CellData(Integer row, Integer column, Content mContent) {
+        this.row = row;
+        this.column = column;
+        this.mContent = mContent;
     }
 }
