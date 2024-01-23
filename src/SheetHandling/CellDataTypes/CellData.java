@@ -1,16 +1,19 @@
+package CellDataTypes;
+
 import java.util.Optional;
 
+//Used to display DataTypes.Cell data and metadata when iterating over Cells in SheetLogic.Sheet
 public class CellData {
     public Integer row;
     public Integer column;
-    public Cell cell;
-
     public Optional<String> value;
+
+    public Coordinate mCoordinate;
+    public Content mContent;
 
     public CellData(Integer row, Integer column, Cell cell) {
         this.row = row;
         this.column = column;
-        this.cell = cell;
-        this.value = Optional.ofNullable(cell.getContent());
+        this.value = cell.getContent();
     }
 }

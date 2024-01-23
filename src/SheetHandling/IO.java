@@ -1,12 +1,23 @@
+package SheetLogic;
+
+import CellDataTypes.CellData;
+
 import java.io.*;
 
 public class IO {
-    public void saveToCSV(Sheet sheet, String filename) throws IOException {
+
+    public Sheet mSheet;
+
+    public IO() {
+        this.mSheet = Sheet.getInstance();
+    }
+
+    public boolean saveToCSV(String filename) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             StringBuilder lineBuilder = new StringBuilder();
             Integer lastRow = 1;
             Integer lastCol = 1;
-            for (CellData cD : sheet) {
+            for (CellData cD : mSheet) {
                 // Handle new rows
                 if(cD.row > lastRow) {
                     writer.write(lineBuilder.toString());
@@ -33,9 +44,13 @@ public class IO {
                 writer.write(lineBuilder.toString());
             }
         }
+        catch (IOException e) {
+            return false;
+        }
+        return true;
     }
 
-    public Sheet loadFromCSV(Sheet sheet, String filename) throws IOException {
+    public boolean loadFromCSV(String filename) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             int row = 1;
@@ -44,14 +59,16 @@ public class IO {
                     String[] cellContents = line.split(";", -1);
                     for (int col = 0; col < cellContents.length; col++) {
                         if (!cellContents[col].isEmpty()) {
-                            sheet.editCell(row, col + 1, cellContents[col]);
+                            mSheet.editCell(row, col + 1, cellContents[col]);
                         }
                     }
                 }
                 row++;
             }
         }
-
-        return sheet;
+        catch (IOException e) {
+            return false;
+        }
+        return true;
     }
 }
